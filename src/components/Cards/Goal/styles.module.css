@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    background-color: var(--section-background);
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: -2px -2px 10px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.03);
+}
+
+.header p {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.footer p,
+.footer strong {
+    font-size: 1.4rem;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress {
+    margin-top: 8px;
+    background-color: var(--primary-rgba10);
+    border-radius: 100px;
+}
+
+.progress div {
+    height: 7px;
+    border-radius: 100px;
+    background-color: var(--primary);
+    width: 0;
+}
