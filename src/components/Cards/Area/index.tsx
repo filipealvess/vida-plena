@@ -1,15 +1,23 @@
+import { useNavigate } from 'react-router-dom';
 import styles from '@/components/Cards/Area/styles.module.css';
+import Icon from '@/components/Icon';
 
 import {IProps} from '@/components/Cards/Area/index.d';
-import Icon from '@/components/Icon';
 
 function AreaCard({
     title,
     goals,
     icon,
+    route,
 }: IProps) {
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate('/metas' + route);
+    }
+
     return (
-        <article className={styles.container}>
+        <article className={styles.container} onClick={handleClick}>
             <header className={styles.header}>
                 <p>{title}</p>
 

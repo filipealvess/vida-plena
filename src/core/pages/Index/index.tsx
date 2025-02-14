@@ -27,6 +27,7 @@ function IndexPage() {
                             goals={area.goals}
                             title={area.title}
                             icon={area.icon}
+                            route={area.route}
                         />
                     ))}
                 </section>
