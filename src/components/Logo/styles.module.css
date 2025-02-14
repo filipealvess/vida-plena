@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.container img {
+    width: 64px;
+}
+
+.container h1 {
+    color: var(--primary);
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+@media (max-width: 450px) {
+    .container img {
+        width: 40px;
+    }
+
+    .container h1 {
+        font-size: 1.8rem;
+    }
+}
