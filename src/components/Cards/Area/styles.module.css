@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--section-background);
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: -2px -2px 10px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.03);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header p {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.footer p,
+.footer strong {
+    font-size: 1.4rem;
+}
