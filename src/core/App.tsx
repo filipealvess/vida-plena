@@ -1,6 +1,11 @@
+import { BrowserRouter } from "react-router-dom";
+import Router from "@/core/Routes";
+
 function App() {
     return (
-        <h1>Vida Plena</h1>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
     );
 }
 
