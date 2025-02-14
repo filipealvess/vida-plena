@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    align-items: center;
+}
+
+.content {
+    margin-top: 80px;
+    width: 100%;
+}
+
+.content h2 {
+    margin-bottom: 24px;
+}
+
+.content section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 600px) {
+    .content section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 450px) {
+    .container {
+        padding: 40px 24px;
+        align-items: flex-start;
+    }
+
+    .content {
+        margin-top: 40px;
+    }
+}
