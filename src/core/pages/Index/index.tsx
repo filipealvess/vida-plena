@@ -11,6 +11,8 @@ function IndexPage() {
 
     useEffect(() => {
         setAreas(AREAS);
+
+        document.title = 'Vida Plena';
     }, []);
 
     return (

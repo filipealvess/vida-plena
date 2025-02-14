@@ -18,7 +18,10 @@ function AreaPage() {
     useEffect(() => {
         if (TYPES.includes(params.area as Types) === false) {
             navigate("/", { replace: true });
+            return;
         }
+
+        document.title = `Metas ${params.area} - Vida Plena`;
     }, [params.area]);
 
     if (params.area === undefined) {
