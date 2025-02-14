@@ -25,7 +25,12 @@ strong {
 html {
     --background: #F7F7F7;
     --section-background: #FFFFFF;
+    --border: #CECECE;
+
     --primary: #4FC646;
+    --primary-contrast: #FFFFFF;
+    --primary-rgba10: rgba(79, 198, 70, 0.1);
+
     --text: #1F1F1F;
 
     font-size: 10px;
