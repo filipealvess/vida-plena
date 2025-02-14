@@ -4,18 +4,30 @@
     border: none;
     outline: none;
     background-color: transparent;
+    color: var(--text);
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    line-height: 130%;
 }
 
 button {
     cursor: pointer;
 }
 
+strong {
+    font-weight: 600;
+}
+
 html {
+    --background: #F7F7F7;
+    --section-background: #FFFFFF;
+    --primary: #4FC646;
+    --text: #1F1F1F;
+
     font-size: 10px;
+    background-color: var(--background);
 }
