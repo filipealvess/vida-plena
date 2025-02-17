@@ -25,6 +25,20 @@ function formatDate(
     return `${day}${divider}${month}${divider}${year}`;
 }
 
+function enToDate(enDate: string) {
+    const [year, month, day] = enDate.split('-');
+
+    return new Date(Number(year), Number(month) - 1, Number(day));
+}
+
+function enToPtBr(enDate: string) {
+    const date = enToDate(enDate);
+
+    return formatDate(date.toISOString());
+}
+
 export {
     formatDate,
+    enToDate,
+    enToPtBr,
 };

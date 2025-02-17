@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styles from '@/components/Cards/Goal/styles.module.css';
 import { getProgress } from '@/utils/goals';
-import { formatDate } from '@/utils/dates';
+import { enToPtBr } from '@/utils/dates';
 
 import { IProps } from '@/components/Cards/Goal/index.d';
 
@@ -33,7 +33,7 @@ function GoalCard({
                     </p>
 
                     <p>
-                        até <strong>{formatDate(endDate)}</strong>
+                        até <strong>{enToPtBr(endDate)}</strong>
                     </p>
                 </div>
 
