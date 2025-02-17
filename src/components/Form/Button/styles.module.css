@@ -6,8 +6,13 @@
     transition: all 0.3s;
 }
 
-.container:hover {
+.container:hover:not(:disabled) {
     opacity: 0.65;
+}
+
+.container:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .filled {
@@ -21,5 +26,6 @@
 }
 
 .inline {
+    align-self: flex-start;
     color: var(--primary);
 }

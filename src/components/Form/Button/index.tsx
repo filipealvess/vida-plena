@@ -9,17 +9,17 @@ const STYLES_BY_TYPE: Record<Types, string> = {
 };
 
 function Button({
-    children,
-    onClick,
     type = 'filled',
+    htmlType = 'button',
+    ...props
 }: IProps) {
     return (
         <button
-            type="button"
-            onClick={onClick}
+            {...props}
+            type={htmlType}
             className={`${styles.container} ${STYLES_BY_TYPE[type]}`}
         >
-            {children}
+            {props.children}
         </button>
     );
 }
