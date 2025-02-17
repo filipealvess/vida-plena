@@ -5,23 +5,48 @@ import { TYPES } from "@/constants/areas";
 import styles from "@/core/pages/Area/styles.module.css";
 import Button from "@/components/Form/Button";
 import GoalCard from "@/components/Cards/Goal";
+import storage from "@/modules/storage";
 
 import { Types } from "@/constants/areas/index.d";
 import { IGoal } from "@/types/goals.d";
 
 function AreaPage() {
-    const [goals] = useState<IGoal[]>([]);
+    const [goals, setGoals] = useState<IGoal[]>([]);
 
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (TYPES.includes(params.area as Types) === false) {
+        if (params.area === undefined || TYPES.includes(params.area as Types) === false) {
             navigate("/", { replace: true });
             return;
         }
 
         document.title = `Metas ${params.area} - Vida Plena`;
+
+        const area = storage.areas.get(params.area);
+        const goals = storage.goals.list();
+
+        if (area === null || goals === null) {
+            return;
+        }
+
+        const filtered: IGoal[] = [];
+
+        Object.values(goals).forEach(goal => {
+            if (area.goals.includes(goal.id)) {
+                filtered.push({
+                    area: goal.area,
+                    checklist: Object.values(goal.checklist),
+                    endDate: goal.endDate,
+                    id: goal.id,
+                    name: goal.name,
+                })
+            }
+        });;
+
+        setGoals(filtered);
+
     }, [params.area]);
 
     if (params.area === undefined) {
@@ -43,7 +68,10 @@ function AreaPage() {
                     {goals.length !== 1 ? ' metas' : ' meta'}
                 </p>
 
-                <Button onClick={() => null} type="inline">
+                <Button
+                    onClick={() => navigate(`/metas/${params.area}/cadastro`)}
+                    type="inline"
+                >
                     + Adicionar
                 </Button>
             </section>
