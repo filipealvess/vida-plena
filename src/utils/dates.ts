@@ -1,4 +1,10 @@
-function formatDate(iso: string) {
+import { Languages } from '@/utils/dates.d';
+
+function formatDate(
+    iso: string,
+    divider = '/',
+    language: Languages = 'pt-BR',
+) {
     const date = new Date(iso);
     let day: string | number = date.getDate();
     let month: string | number = date.getMonth() + 1;
@@ -12,7 +18,11 @@ function formatDate(iso: string) {
         month = `0${month}`;
     }
 
-    return `${day}/${month}/${year}`;
+    if (language === 'en') {
+        return `${year}${divider}${month}${divider}${day}`;
+    }
+
+    return `${day}${divider}${month}${divider}${year}`;
 }
 
 export {
