@@ -5,6 +5,7 @@ export interface IArea {
     goals: number;
     icon: Icons;
     route: `/${Types}`;
+    id: Types;
 }
 
 export type Types = (
