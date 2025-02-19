@@ -1,6 +1,7 @@
 import storage from '@/modules/storage/methods';
 import areas from '@/modules/storage/areas';
 import { STORAGE } from '@/modules/storage/constants';
+import { getId } from '@/modules/storage/goals/utils';
 
 import { IStoredGoalById } from '@/modules/storage/goals/index.d';
 import { IStoredChecklistById } from '@/modules/storage/goals/index.d';
@@ -16,10 +17,10 @@ function add(
     const checklist: IStoredChecklistById = {};
     const timestamp = new Date().toISOString();
 
-    const stored = storage.get<IStoredGoalById>(STORAGE.GOALS);
+    const stored = list();
     const updated = stored ?? {};
 
-    const id = timestamp.replace(/\D/g, '') + '_' + name.replace(/\s/g, '-');
+    const id = getId(timestamp, name);
 
     for (const item in items) {
         checklist[item] = {
@@ -42,6 +43,16 @@ function add(
     areas.addGoal(area, id);
 }
 
+function get(id: string) {
+    const stored = list();
+
+    if (stored === null) {
+        return null;
+    }
+
+    return stored[id] ?? null;
+}
+
 function list() {
     const stored = storage.get<IStoredGoalById>(STORAGE.GOALS);
 
@@ -50,6 +61,7 @@ function list() {
 
 const goals = {
     add,
+    get,
     list,
 };
 
