@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
-import { TYPES } from "@/constants/areas";
 import AreaIcon from "@/components/Icon/Area";
 import styles from "@/core/pages/NewGoal/styles.module.css";
 import Button from "@/components/Form/Button";
@@ -9,6 +8,7 @@ import Input from "@/components/Form/Input";
 import Divider from "@/components/Divider";
 import { formatDate } from "@/utils/dates";
 import storage from "@/modules/storage";
+import { checkArea } from "@/utils/areas";
 
 import { Types } from "@/constants/areas/index.d";
 import { IChecklist, IChecklistById } from "@/core/pages/NewGoal/index.d";
@@ -88,7 +88,7 @@ function NewGoalPage() {
     }
 
     useEffect(() => {
-        if (TYPES.includes(params.area as Types) === false) {
+        if (checkArea(params.area) === false) {
             navigate("/", { replace: true });
             return;
         }

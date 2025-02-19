@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
-import { TYPES } from "@/constants/areas";
 import styles from "@/core/pages/Area/styles.module.css";
 import Button from "@/components/Form/Button";
 import GoalCard from "@/components/Cards/Goal";
 import storage from "@/modules/storage";
+import { checkArea } from "@/utils/areas";
 
-import { Types } from "@/constants/areas/index.d";
 import { IGoal } from "@/types/goals.d";
 
 function AreaPage() {
@@ -17,14 +16,14 @@ function AreaPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (params.area === undefined || TYPES.includes(params.area as Types) === false) {
+        if (checkArea(params.area) === false) {
             navigate("/", { replace: true });
             return;
         }
 
         document.title = `Metas ${params.area} - Vida Plena`;
 
-        const area = storage.areas.get(params.area);
+        const area = storage.areas.get(params.area!);
         const goals = storage.goals.list();
 
         if (area === null || goals === null) {
