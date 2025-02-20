@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.container input {
+    display: none;
+}
+
+.container label {
+    cursor: pointer;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
