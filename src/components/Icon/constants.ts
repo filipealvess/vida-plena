@@ -12,6 +12,9 @@ import square from '@/assets/icons/square.svg';
 import moreVertical from '@/assets/icons/more-vertical.svg';
 import x from '@/assets/icons/x.svg';
 import trashDanger from '@/assets/icons/trash-danger.svg';
+import alertCircle from '@/assets/icons/alert-circle.svg';
+import alertTriangle from '@/assets/icons/alert-triangle.svg';
+import xOctagon from '@/assets/icons/x-octagon.svg';
 
 import {Icons} from '@/components/Icon/index.d';
 
@@ -30,6 +33,9 @@ const ICONS: Record<Icons, string> = {
     "more-vertical": moreVertical,
     x,
     "trash-danger": trashDanger,
+    "alert-circle": alertCircle,
+    "alert-triangle": alertTriangle,
+    "x-octagon": xOctagon,
 };
 
 export {
