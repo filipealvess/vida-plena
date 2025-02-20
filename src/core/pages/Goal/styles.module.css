@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    align-items: center;
+}
+
+.data {
+    width: 100%;
+}
+
+.data h2 {
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    gap: 16px;
+}
+
+.cards > * {
+    flex: 1;
+}
+
+.divider {
+    margin: 64px 0 24px;
+}
+
+.feedback {
+    opacity: 0.5;
+    text-align: center;
+}
+
+@media (max-width: 450px) {
+    .container {
+        padding: 40px 24px;
+        align-items: flex-start;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+}
