@@ -17,7 +17,7 @@ function Button({
         <button
             {...props}
             type={htmlType}
-            className={`${styles.container} ${STYLES_BY_TYPE[type]}`}
+            className={`${styles.container} ${STYLES_BY_TYPE[type]} ${props.className}`}
         >
             {props.children}
         </button>
