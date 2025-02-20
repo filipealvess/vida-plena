@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 8px;
+    min-width: 150px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: var(--section-background);
+    box-shadow: var(--box-shadow);
+}
+
+.dropdown button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    color: var(--text);
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.3s;
+}
+
+.dropdown button:hover {
+    background-color: var(--background);
+}
