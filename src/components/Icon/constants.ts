@@ -11,6 +11,7 @@ import checkSquare from '@/assets/icons/check-square.svg';
 import square from '@/assets/icons/square.svg';
 import moreVertical from '@/assets/icons/more-vertical.svg';
 import x from '@/assets/icons/x.svg';
+import trashDanger from '@/assets/icons/trash-danger.svg';
 
 import {Icons} from '@/components/Icon/index.d';
 
@@ -28,6 +29,7 @@ const ICONS: Record<Icons, string> = {
     square,
     "more-vertical": moreVertical,
     x,
+    "trash-danger": trashDanger,
 };
 
 export {

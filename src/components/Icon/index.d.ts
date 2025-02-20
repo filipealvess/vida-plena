@@ -16,5 +16,6 @@ export type Icons = (
     'check-square' |
     'square' |
     'more-vertical' |
-    'x'
+    'x' |
+    'trash-danger'
 );
