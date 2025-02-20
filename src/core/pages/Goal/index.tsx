@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import styles from '@/core/pages/Goal/styles.module.css';
 import Dropdown from '@/core/pages/Goal/components/Dropdown';
@@ -10,13 +10,16 @@ import { enToPtBr } from "@/utils/dates";
 import { checkArea } from "@/utils/areas";
 import Divider from "@/components/Divider";
 import Checkbox from "@/components/Form/Checkbox";
+import Notification from "@/components/Notification";
 
 import { IStoredChecklist, IStoredChecklistById, IStoredGoal } from "@/modules/storage/goals/index.d";
 
 function GoalPage() {
     const [data, setData] = useState<IStoredGoal | null>(null);
     const [checklist, setChecklist] = useState({} as IStoredChecklistById);
+    const [updated, setUpdated] = useState(false);
 
+    const {state} = useLocation();
     const params = useParams();
     const navigate = useNavigate();
 
@@ -41,6 +44,11 @@ function GoalPage() {
             return updated;
         });
     }
+    useEffect(() => {
+        if (state?.updated === true) {
+            setUpdated(true);
+        }
+    }, [state]);
 
     useEffect(() => {
         if (checkArea(params.area) === false) {
@@ -112,6 +120,14 @@ function GoalPage() {
                     />
                 ))}
             </section>
+
+            <Notification
+                onClose={() => setUpdated(false)}
+                text="Meta atualizada com sucesso!"
+
+                visible={updated}
+                type="success"
+            />
         </main>
     );
 }

@@ -88,7 +88,7 @@ function UpdateGoalPage() {
             checklist: items,
         });
 
-        navigate(`/metas/${params.area}/${params.goal}`);
+        navigate(`/metas/${params.area}/${params.goal}`, {state: {updated: true}});
     }
 
     useEffect(() => {
