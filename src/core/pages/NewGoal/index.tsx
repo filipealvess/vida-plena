@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import AreaIcon from "@/components/Icon/Area";
@@ -18,6 +18,7 @@ function NewGoalPage() {
     const [endDate, setEndDate] = useState(formatDate(new Date().toISOString(), '-', 'en'));
     const [checklist, setChecklist] = useState<IChecklistById>({});
 
+    const nameRef = useRef<HTMLInputElement>(null);
     const params = useParams();
     const navigate = useNavigate();
 
@@ -36,6 +37,10 @@ function NewGoalPage() {
     }
 
     function addItem() {
+        if (hasEmptyItem === true) {
+            return;
+        }
+
         const ids = Object.keys(checklist);
         let id = 0;
 
@@ -50,20 +55,6 @@ function NewGoalPage() {
                 text: '',
             },
         }));
-    }
-
-    function handleChecklistBlur() {
-        setChecklist(prev => {
-            const clone = {...prev};
-
-            for (const item in clone) {
-                if (clone[item].text === '') {
-                    delete clone[item];
-                }
-            }
-
-            return clone;
-        });
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -93,6 +84,8 @@ function NewGoalPage() {
             return;
         }
 
+        nameRef.current?.focus();
+
         document.title = 'Nova meta - Vida Plena';
     }, [params.area]);
 
@@ -116,6 +109,7 @@ function NewGoalPage() {
                     value={name}
                     onChange={({target}) => setName(target.value)}
                     required
+                    ref={nameRef}
                 />
 
                 <Input
@@ -133,10 +127,11 @@ function NewGoalPage() {
                         key={item.id}
                         placeholder="Nome do item"
                         value={item.text}
+                        autoFocus
+                        onSubmit={hasEmptyItem ? () => undefined : addItem}
                         onChange={({target}) => (
                             handleChangeChecklist(item.id, target.value)
                         )}
-                        onBlur={handleChecklistBlur}
                     />
                 ))}
 

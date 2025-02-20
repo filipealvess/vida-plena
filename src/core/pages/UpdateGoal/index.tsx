@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import styles from "@/core/pages/UpdateGoal/styles.module.css";
@@ -16,6 +16,7 @@ function UpdateGoalPage() {
     const [endDate, setEndDate] = useState('');
     const [checklist, setChecklist] = useState({} as IStoredChecklistById);
 
+    const nameRef = useRef<HTMLInputElement>(null);
     const params = useParams();
     const navigate = useNavigate();
 
@@ -24,6 +25,10 @@ function UpdateGoalPage() {
     ));
 
     function addItem() {
+        if (hasEmptyItem === true) {
+            return;
+        }
+
         const ids = Object.keys(checklist);
         let id = 0;
 
@@ -49,20 +54,6 @@ function UpdateGoalPage() {
                 text,
             },
         }));
-    }
-
-    function handleChecklistBlur() {
-        setChecklist(prev => {
-            const clone = {...prev};
-
-            for (const item in clone) {
-                if (clone[item].text === '') {
-                    delete clone[item];
-                }
-            }
-
-            return clone;
-        });
     }
 
     function handleDelete(id: number) {
@@ -123,6 +114,9 @@ function UpdateGoalPage() {
         setEndDate(goal.endDate);
         setChecklist(goal.checklist);
 
+        // needed because "autofocus" in checklist is removing this focus
+        setTimeout(() => nameRef.current?.focus(), 100);
+
         document.title = 'Atualizar meta - Vida Plena';
     }, [params.area]);
 
@@ -145,6 +139,7 @@ function UpdateGoalPage() {
                     value={name}
                     onChange={({target}) => setName(target.value)}
                     required
+                    ref={nameRef}
                 />
 
                 <Input
@@ -162,9 +157,10 @@ function UpdateGoalPage() {
                         key={item.id}
                         placeholder="Nome do item"
                         value={item.text}
-                        onBlur={handleChecklistBlur}
+                        autoFocus={item.text === ''}
                         onDelete={() => handleDelete(item.id)}
                         onChange={({target}) => handleChangeChecklist(item.id, target.value)}
+                        onSubmit={hasEmptyItem ? () => undefined : addItem}
                     />
                 ))}
 
