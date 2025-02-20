@@ -1,1 +1,3 @@
-export type IProps = React.InputHTMLAttributes<HTMLInputElement>;
+export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    onDelete?: () => void;
+}
