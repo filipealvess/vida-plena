@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.divider {
+    margin: 24px 0 16px;
+}
+
+@media (max-width: 450px) {
+    .container {
+        padding: 40px 24px;
+        align-items: flex-start;
+    }
+}

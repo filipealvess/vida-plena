@@ -17,7 +17,7 @@ function Dropdown({
     const options = useMemo<IOption[]>(() => ([
         {
             id: 'update',
-            onClick: () => null,
+            onClick: () => navigate(`/metas/${goal.area}/${goal.id}/atualizar`),
             text: 'Atualizar',
         },
         {

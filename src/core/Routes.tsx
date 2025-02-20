@@ -3,6 +3,7 @@ import IndexPage from "@/core/pages/Index";
 import AreaPage from "@/core/pages/Area";
 import NewGoalPage from "@/core/pages/NewGoal";
 import GoalPage from "@/core/pages/Goal";
+import UpdateGoalPage from "@/core/pages/UpdateGoal";
 
 function Router() {
     return (
@@ -11,6 +12,7 @@ function Router() {
             <Route path="/metas/:area" Component={AreaPage} />
             <Route path="/metas/:area/cadastro" Component={NewGoalPage} />
             <Route path="/metas/:area/:goal" Component={GoalPage} />
+            <Route path="/metas/:area/:goal/atualizar" Component={UpdateGoalPage} />
         </Routes>
     );
 }
