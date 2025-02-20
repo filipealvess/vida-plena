@@ -16,8 +16,7 @@ function add(
     const checklist: IStoredChecklistById = {};
     const timestamp = new Date().toISOString();
 
-    const stored = list();
-    const updated = stored ?? {};
+    const updated = list();
 
     const id = getId(timestamp, name);
 
@@ -38,7 +37,7 @@ function add(
         timestamp,
     };
 
-    storage.set(STORAGE.GOALS, updated);
+    storage.set<IStoredGoalById>(STORAGE.GOALS, updated);
     areas.addGoal(area, id);
 }
 
@@ -51,7 +50,7 @@ function update(id: string, data: IStoredGoal) {
 
     const goals = list();
 
-    storage.set(STORAGE.GOALS, {
+    storage.set<IStoredGoalById>(STORAGE.GOALS, {
         ...goals,
         [id]: data,
     })
@@ -70,12 +69,22 @@ function updateChecklist(id: string, checklist: IStoredChecklistById) {
     });
 }
 
+function remove(id: string) {
+    const goals = list();
+    const found = goals[id];
+
+    if (found === undefined) {
+        return;
+    }
+
+    delete goals[id];
+
+    storage.set<IStoredGoalById>(STORAGE.GOALS, goals);
+    areas.removeGoal(found.area, id);
+}
+
 function get(id: string) {
     const stored = list();
-
-    if (stored === null) {
-        return null;
-    }
 
     return stored[id] ?? null;
 }
@@ -83,13 +92,14 @@ function get(id: string) {
 function list() {
     const stored = storage.get<IStoredGoalById>(STORAGE.GOALS);
 
-    return stored;
+    return stored ?? {};
 }
 
 const goals = {
     add,
     update,
     updateChecklist,
+    remove,
     get,
     list,
 };
