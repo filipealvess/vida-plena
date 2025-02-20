@@ -3,8 +3,7 @@ import areas from '@/modules/storage/areas';
 import { STORAGE } from '@/modules/storage/constants';
 import { getId } from '@/modules/storage/goals/utils';
 
-import { IStoredGoalById } from '@/modules/storage/goals/index.d';
-import { IStoredChecklistById } from '@/modules/storage/goals/index.d';
+import { IStoredGoal, IStoredGoalById, IStoredChecklistById } from '@/modules/storage/goals/index.d';
 import { IChecklistById } from '@/core/pages/NewGoal/index.d';
 import { Types as Areas } from '@/constants/areas/index.d';
 
@@ -43,6 +42,34 @@ function add(
     areas.addGoal(area, id);
 }
 
+function update(id: string, data: IStoredGoal) {
+    const goal = get(id);
+
+    if (goal === null) {
+        return;
+    }
+
+    const goals = list();
+
+    storage.set(STORAGE.GOALS, {
+        ...goals,
+        [id]: data,
+    })
+}
+
+function updateChecklist(id: string, checklist: IStoredChecklistById) {
+    const goal = get(id);
+
+    if (goal === null) {
+        return;
+    }
+
+    update(id, {
+        ...goal,
+        checklist,
+    });
+}
+
 function get(id: string) {
     const stored = list();
 
@@ -61,6 +88,8 @@ function list() {
 
 const goals = {
     add,
+    update,
+    updateChecklist,
     get,
     list,
 };
