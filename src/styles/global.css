@@ -35,6 +35,8 @@ html {
     --text: #1F1F1F;
 
     --danger: #EF233C;
+    --info: #35A7FF;
+    --warn: #EFA00B;
 
     font-size: 10px;
     background-color: var(--background);
