@@ -75,7 +75,7 @@ function NewGoalPage() {
             items,
         );
 
-        navigate(`/metas/${params.area}`);
+        navigate(`/metas/${params.area}`, {state: {created: true}});
     }
 
     useEffect(() => {

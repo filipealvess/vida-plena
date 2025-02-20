@@ -1,19 +1,34 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import styles from "@/core/pages/Area/styles.module.css";
+import { NOTIFICATIONS } from "@/core/pages/Area/constants";
 import Button from "@/components/Form/Button";
 import GoalCard from "@/components/Cards/Goal";
 import storage from "@/modules/storage";
 import { checkArea } from "@/utils/areas";
+import Notification from "@/components/Notification";
 
 import { IGoal } from "@/types/goals.d";
+import { Notifications } from "@/core/pages/Area/constants.d";
 
 function AreaPage() {
     const [goals, setGoals] = useState<IGoal[]>([]);
+    const [notification, setNotification] = useState<Notifications | null>(null);
 
     const params = useParams();
     const navigate = useNavigate();
+    const {state} = useLocation();
+
+    useEffect(() => {
+        if (state?.deleted === true) {
+            setNotification('deleted');
+        }
+
+        if (state?.created === true) {
+            setNotification('created');
+        }
+    }, [state]);
 
     useEffect(() => {
         if (checkArea(params.area) === false) {
@@ -93,6 +108,13 @@ function AreaPage() {
                     ))}
                 </section>
             </div>
+
+            <Notification
+                onClose={() => setNotification(null)}
+                text={NOTIFICATIONS[notification!]?.text ?? ''}
+                type={NOTIFICATIONS[notification!]?.icon ?? ''}
+                visible={notification !== null}
+            />
         </main>
     );
 }

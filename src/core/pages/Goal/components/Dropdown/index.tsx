@@ -32,7 +32,10 @@ function Dropdown({
         storage.goals.remove(goal.id);
 
         setPopupVisible(false);
-        navigate(`/metas/${goal.area}`, {replace: true});
+        navigate(`/metas/${goal.area}`, {
+            replace: true,
+            state: {deleted: true},
+        });
     }
 
     return (
