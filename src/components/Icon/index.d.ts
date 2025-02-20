@@ -10,5 +10,11 @@ export type Icons = (
     'heart' |
     'sun' |
     'user' |
-    'users'
+    'users' |
+    'calendar' |
+    'check-circle' |
+    'check-square' |
+    'square' |
+    'more-vertical' |
+    'x'
 );
