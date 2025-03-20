@@ -44,6 +44,7 @@ body {
     --text: #1F1F1F;
 
     background-color: var(--background);
+    overflow-x: hidden;
 }
 
 .dark {
